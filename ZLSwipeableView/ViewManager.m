@@ -46,8 +46,9 @@ static const CGFloat kAnchorViewWidth = 1000;
         self.animator = animator;
         self.swipeableView = swipeableView;
 
-        [view addGestureRecognizer:
-                  [[PanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
+        if (!swipeableView.disableGesture) {
+            [view addGestureRecognizer:[[PanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
+        }
         _anchorView =
             [[UIView alloc] initWithFrame:CGRectMake(0, 0, kAnchorViewWidth, kAnchorViewWidth)];
         _anchorView.hidden = NO;
